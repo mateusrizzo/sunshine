@@ -4,7 +4,7 @@ import { StyleSheet, Text, View, Button } from 'react-native';
 
 export default function App() {
   return (
-    <View>
+    <View style={styles.container}>
       <View>
       <Text>Sunshine</Text>
       </View>
@@ -13,10 +13,16 @@ export default function App() {
         <Button></Button>
       </View>
       <View>
-        
+
       </View>
     </View>
 
   );
 }
 
+const styles = StyleSheet.create({
+  container: {
+
+  },
+
+})
