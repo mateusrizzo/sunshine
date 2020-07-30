@@ -3,6 +3,7 @@ import { Provider as PaperProvider } from 'react-native-paper';
 import React from 'react';
 import { StyleSheet, Text, View, Button, SafeAreaView, TextInput } from 'react-native';
 import {IconButton} from 'react-native-paper'
+import WeatherCard from './src/components/WeatherCard';
 
 export default function App() {
   return (
@@ -17,6 +18,7 @@ export default function App() {
           <IconButton icon="magnify" style={styles.button}></IconButton>
         </View>
         <View>
+          <WeatherCard/>
         </View>
       </SafeAreaView>
     </PaperProvider>
