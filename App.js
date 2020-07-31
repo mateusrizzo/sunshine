@@ -1,11 +1,20 @@
 import { StatusBar } from 'expo-status-bar';
 import { Provider as PaperProvider } from 'react-native-paper';
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import { StyleSheet, Text, View, Button, SafeAreaView, TextInput } from 'react-native';
 import {IconButton} from 'react-native-paper'
 import WeatherCard from './src/components/WeatherCard';
 
+import api from './src/services/api';
+
+
 export default function App() {
+  const [city,setCity] = useState('');
+  async function searchCity(){
+      const key = '%09FXRIgRw5S0AhuL5HwsAinErArWAbCUBy';
+      const response = await api.get(`?apikey=${key}&q=${city} HTTP/1.1`);
+      console.log (response.data);
+  }
   return (
     <PaperProvider>
       <SafeAreaView style={styles.container}>
@@ -14,8 +23,14 @@ export default function App() {
         </View>
         <Text style={styles.label}>Location</Text>
         <View style={styles.form}>
-          <TextInput style={styles.input}></TextInput>
-          <IconButton icon="magnify" style={styles.button}></IconButton>
+          <TextInput
+          placeholder="Search for a city"
+          placeholderTextColor="#999"
+          autoCapitalize="words"
+          value={city}
+          onChangeText={setCity}
+          style={styles.input}/>
+          <IconButton icon="magnify" onPress={searchCity} style={styles.button}></IconButton>
         </View>
         <View>
           <WeatherCard/>
