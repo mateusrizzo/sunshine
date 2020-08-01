@@ -5,7 +5,6 @@ import { StyleSheet, Text, View, Button, SafeAreaView, TextInput } from 'react-n
 import {IconButton} from 'react-native-paper'
 import WeatherCard from './src/components/WeatherCard';
 
-import api from './src/services/api';
 import axios from 'axios';
 
 
@@ -13,8 +12,8 @@ export default function App() {
   const [city,setCity] = useState('');
   async function searchCity(){
       const key = 'ace400bd17e87b3b357c4015c65f8764';
-      axios.get(`api.openweathermap.org/data/2.5/forecast?q=${city}&units=metric&appid=${key}`)
-      .then(response => console.log(response.data.Key));
+      axios.get(`api.openweathermap.org/data/2.5/forecast?q=${city}&cnt=1&units=metric&appid=${key}`)
+      .then(response => console.log(response));
   }
   return (
     <PaperProvider>
