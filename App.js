@@ -13,7 +13,7 @@ export default function App() {
   const [city,setCity] = useState('');
   async function searchCity(){
       const key = 'ace400bd17e87b3b357c4015c65f8764';
-      axios.get(`api.openweathermap.org/data/2.5/forecast/daily?q=${city}&cnt=7&appid=${key}`)
+      axios.get(`api.openweathermap.org/data/2.5/forecast/daily?q=${city}&cnt=7&units=metric&appid=${key}`)
       .then(response => console.log(response.data.Key));
   }
   return (
