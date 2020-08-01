@@ -6,14 +6,15 @@ import {IconButton} from 'react-native-paper'
 import WeatherCard from './src/components/WeatherCard';
 
 import api from './src/services/api';
+import axios from 'axios';
 
 
 export default function App() {
   const [city,setCity] = useState('');
   async function searchCity(){
-      const key = '%09FXRIgRw5S0AhuL5HwsAinErArWAbCUBy';
-      const response = await api.get(`?apikey=${key}&q=${city} HTTP/1.1`);
-      console.log (response.data);
+      const key = 'ace400bd17e87b3b357c4015c65f8764';
+      axios.get(`api.openweathermap.org/data/2.5/forecast/daily?q=${city}&cnt=7&appid=${key}`)
+      .then(response => console.log(response.data.Key));
   }
   return (
     <PaperProvider>
