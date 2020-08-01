@@ -11,10 +11,15 @@ import axios from 'axios';
 export default function App() {
   const [city,setCity] = useState('');
   const [data, setData] = useState('');
+
+  useEffect(() => {
+    console.log(data);
+  }, [data])
+
   async function searchCity(){
       const key = 'ace400bd17e87b3b357c4015c65f8764';
-      axios.get(`http://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${key}`)
-        .then(response => console.log(response))
+      const response = await axios.get(`http://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${key}`)
+      setData(response);
   }
   return (
     <PaperProvider>
@@ -34,7 +39,7 @@ export default function App() {
           <IconButton icon="magnify" onPress={searchCity} style={styles.button}></IconButton>
         </View>
         <View>
-          <WeatherCard data={data}/>
+          {data ? <WeatherCard data={data}/> : ''}
         </View>
       </SafeAreaView>
     </PaperProvider>
