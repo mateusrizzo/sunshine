@@ -13,7 +13,7 @@ export default function App() {
   const [data, setData] = useState('');
 
   useEffect(() => {
-    console.log(data);
+    
   }, [data])
 
   async function searchCity(){
@@ -39,7 +39,7 @@ export default function App() {
           <IconButton icon="magnify" onPress={searchCity} style={styles.button}></IconButton>
         </View>
         <View>
-          {data ? <WeatherCard data={data}/> : ''}
+          <WeatherCard data={data}/>
         </View>
       </SafeAreaView>
     </PaperProvider>
