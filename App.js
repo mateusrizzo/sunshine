@@ -12,10 +12,6 @@ export default function App() {
   const [city,setCity] = useState('');
   const [data, setData] = useState('');
 
-  useEffect(() => {
-    
-  }, [data])
-
   async function searchCity(){
       const key = 'ace400bd17e87b3b357c4015c65f8764';
       const response = await axios.get(`http://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${key}`)
