@@ -1,5 +1,6 @@
 import React from 'react';
 import {View, Text, Image, StyleSheet} from 'react-native';
+import {NTR_400Regular} from '@expo-google-fonts/ntr'
 
 import cloudWind from '../Icons/Cloud-wind.png';
 import moon from '../Icons/Moon.png';
@@ -40,6 +41,12 @@ const styles = StyleSheet.create({
         resizeMode: 'contain'
     },
     temperature: {
-        
+        fontFamily: "NTR_400Regular",
+        fontSize: 32,
+        marginLeft: 6,
     },
+    weather: {
+        fontFamily: 'NTR_400Regular',
+        fontSize: 22,
+    }
 })

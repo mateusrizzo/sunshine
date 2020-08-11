@@ -1,14 +1,20 @@
-import { StatusBar } from 'expo-status-bar';
 import { Provider as PaperProvider } from 'react-native-paper';
 import React, {useState, useEffect} from 'react';
 import { StyleSheet, Text, View, Button, SafeAreaView, TextInput } from 'react-native';
 import {IconButton} from 'react-native-paper'
 import WeatherCard from './src/components/WeatherCard';
-
+import {NTR_400Regular, useFonts} from '@expo-google-fonts/ntr';
+import {Montserrat_300Light} from '@expo-google-fonts/montserrat';
 import axios from 'axios';
+import { AppLoading } from 'expo';
 
 
 export default function App() {
+
+  let [fontsloaded] = useFonts ({
+    NTR_400Regular,
+    Montserrat_300Light,
+  });
   const [city, setCity] = useState('');
   const [weather, setWeather] = useState('');
   const [temp, setTemp] = useState();
@@ -21,6 +27,9 @@ export default function App() {
       setWeather(response.data.weather[0].main);
       setTemp(Math.round(response.data.main.temp));
   }
+  if(!fontsloaded){
+    return <AppLoading/>
+  } else {
   return (
     <PaperProvider>
       <SafeAreaView style={styles.container}>
@@ -44,28 +53,29 @@ export default function App() {
       </SafeAreaView>
     </PaperProvider>
   );
+  }
 }
 
 const styles = StyleSheet.create({
   header: {
     backgroundColor: "#67A2DA",
-    paddingBottom: 12,
+    paddingBottom: 8,
     justifyContent: "center",
-    paddingTop: 30,
+    paddingTop: 20,
   },
   title: {
     textAlign: 'right',
-    fontSize: 18,
+    fontSize: 26,
     color: "#fff",
-    fontWeight: "bold",
     marginTop: 5,
     marginRight: 10,
+    fontFamily: "NTR_400Regular"
   },
   label:{
     marginTop: 75,
     marginLeft: 60,
-    fontWeight: "bold",
-    fontSize: 18,
+    fontSize: 24,
+    fontFamily: "NTR_400Regular"
   },
   form: {
     marginLeft: 65,
@@ -77,5 +87,6 @@ const styles = StyleSheet.create({
     marginBottom: 10,
     borderBottomWidth: 1,
     width: 200,
+    fontFamily: "Montserrat_300Light"
   },
 })
