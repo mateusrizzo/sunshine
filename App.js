@@ -9,7 +9,7 @@ import axios from 'axios';
 
 
 export default function App() {
-  const [city,setCity] = useState('');
+  const [city, setCity] = useState('');
   const [data, setData] = useState('');
 
   async function searchCity(){
