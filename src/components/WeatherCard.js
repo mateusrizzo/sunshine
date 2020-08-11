@@ -11,7 +11,9 @@ import sun from '../Icons/Sun.png';
 import sunshine from '../Icons/Sunshine.png';
 import tornado from '../Icons/Tornado.png';
 
-export default function WeatherCard({data}){
+export default function WeatherCard({weather, temperature}){
+    // console.log(weather);
+    // console.log(temperature);
     return(
         <View>
             <Image/>
