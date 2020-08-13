@@ -18,7 +18,7 @@ export default function App() {
   const [city, setCity] = useState('');
   const [weather, setWeather] = useState('');
   const [temp, setTemp] = useState();
-
+  const [description, setDescription] = useState('');
 
 
   async function searchCity(){
@@ -26,7 +26,23 @@ export default function App() {
       const response = await axios.get(`http://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${key}`)
       setWeather(response.data.weather[0].main);
       setTemp(Math.round(response.data.main.temp));
+      setDescription(response.data.weather[0].description);
+
   }
+  // function changeIcon(weather) {
+  //   switch (weather) {
+  //             case 'Cloudy': return 'cloudWind';
+  //             case 'Moon': return 'moon';
+  //             case 'Night': return 'night';
+  //             case 'Rain': return 'rainy';
+  //             case 'Thunderstorm': 'rainyThunder';
+  //             case 'Snow': return 'snow';
+  //             case 'Sunny': return 'sun';
+  //             case 'Sunshine': return 'sunshine';
+  //             case 'Tornado': return 'tornado';
+  //             default: return 'sun';
+  //         }
+  // }
   if(!fontsloaded){
     return <AppLoading/>
   } else {
@@ -48,7 +64,7 @@ export default function App() {
           <IconButton icon="magnify" onPress={searchCity} style={styles.button}></IconButton>
         </View>
         <View>
-          {weather ? <WeatherCard weather={weather} temperature={temp}/> : null}
+          {weather ? <WeatherCard weather={weather} temperature={temp} description={description}/> : null}
         </View>
       </SafeAreaView>
     </PaperProvider>
@@ -59,7 +75,7 @@ export default function App() {
 const styles = StyleSheet.create({
   header: {
     backgroundColor: "#67A2DA",
-    paddingBottom: 8,
+    paddingBottom: 3,
     justifyContent: "center",
     paddingTop: 20,
   },
