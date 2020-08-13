@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import {Image} from 'react-native';
+import {Image, StyleSheet} from 'react-native';
 
 import cloudWind from '../Icons/Cloud-wind.png';
 import moon from '../Icons/Moon.png';
@@ -13,16 +13,25 @@ import tornado from '../Icons/Tornado.png';
 
 export default function Icon (weather){
     const [icon, setIcon] = useState();
-        switch (weather) {
-              case 'Cloudy': return <Image source={cloudWind}/>;
-              case 'Moon': return <Image source={moon}/>;
-              case 'Night': return <Image source={night}/>;
-              case 'Rain': return <Image source={rainy}/>;
-              case 'Thunderstorm': <Image source={rainyThunder}/>;
-              case 'Snow': return <Image source={snow}/>;
-              case 'Sunny': return <Image source={sun}/>;
-              case 'Sunshine': return <Image source={sunshine}/>;
-              case 'Tornado': return <Image source={tornado}/>;
-              default: return <Image source={sunshine}/>;
+        switch (weather.weather) {
+              case "Clouds": return <Image style={styles.icon} source={cloudWind}/>;
+              case "Moon": return <Image style={styles.icon} source={moon}/>;
+              case "Night": return <Image style={styles.icon} source={night}/>;
+              case "Rain": return <Image style={styles.icon} source={rainy}/>;
+              case "Thunderstorm": return <Image style={styles.icon} source={rainyThunder}/>;
+              case "Snow": return <Image style={styles.icon} source={snow}/>;
+              case "Clear": return <Image style={styles.icon} source={sun}/>;
+              case "Sunshine": return <Image style={styles.icon} source={sunshine}/>;
+              case "Tornado": return <Image style={styles.icon} source={tornado}/>;
+              default: return <Image style={styles.icon} source={sunshine}/>;
           }
 }
+
+const styles = StyleSheet.create({
+    icon: {
+        margin: 25,
+        width: 94,
+        height: 87,
+        resizeMode: 'contain'
+    },
+})

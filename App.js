@@ -1,6 +1,6 @@
 import { Provider as PaperProvider } from 'react-native-paper';
 import React, {useState, useEffect} from 'react';
-import { StyleSheet, Text, View, Button, SafeAreaView, TextInput } from 'react-native';
+import { StyleSheet, Text, View, Button, SafeAreaView, TextInput, Alert } from 'react-native';
 import {IconButton} from 'react-native-paper'
 import WeatherCard from './src/components/WeatherCard';
 import {NTR_400Regular, useFonts} from '@expo-google-fonts/ntr';
@@ -19,14 +19,24 @@ export default function App() {
   const [weather, setWeather] = useState('');
   const [temp, setTemp] = useState();
   const [description, setDescription] = useState('');
+  const [place, setPlace] = useState('');
 
 
-  async function searchCity(){
+  function searchCity(){
       const key = 'ace400bd17e87b3b357c4015c65f8764';
-      const response = await axios.get(`http://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${key}`)
+      axios.get(`http://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${key}`)
+      .then(response => {
       setWeather(response.data.weather[0].main);
       setTemp(Math.round(response.data.main.temp));
       setDescription(response.data.weather[0].description);
+      setPlace(city + ', ' + response.data.sys.country);
+      })
+      .catch(error => {
+        Alert.alert(
+          'Nothing found',
+          'Please enter a valid city name'
+        );
+      })
 
   }
 
@@ -49,10 +59,10 @@ export default function App() {
           value={city}
           onChangeText={setCity}
           style={styles.input}/>
-          <IconButton icon="magnify" onPress={searchCity} style={styles.button}></IconButton>
+          <IconButton icon="magnify" onPress={searchCity} style={styles.button}/>
         </View>
         <View>
-          {weather ? <WeatherCard weather={weather} temperature={temp} description={description}/> : null}
+          {weather ? <WeatherCard weather={weather} temperature={temp} description={description} place={place}/> : null}
         </View>
       </SafeAreaView>
     </PaperProvider>
