@@ -29,20 +29,8 @@ export default function App() {
       setDescription(response.data.weather[0].description);
 
   }
-  // function changeIcon(weather) {
-  //   switch (weather) {
-  //             case 'Cloudy': return 'cloudWind';
-  //             case 'Moon': return 'moon';
-  //             case 'Night': return 'night';
-  //             case 'Rain': return 'rainy';
-  //             case 'Thunderstorm': 'rainyThunder';
-  //             case 'Snow': return 'snow';
-  //             case 'Sunny': return 'sun';
-  //             case 'Sunshine': return 'sunshine';
-  //             case 'Tornado': return 'tornado';
-  //             default: return 'sun';
-  //         }
-  // }
+
+
   if(!fontsloaded){
     return <AppLoading/>
   } else {

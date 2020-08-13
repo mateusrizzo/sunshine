@@ -11,12 +11,13 @@ import snow from '../Icons/Snow.png';
 import sun from '../Icons/Sun.png';
 import sunshine from '../Icons/Sunshine.png';
 import tornado from '../Icons/Tornado.png';
+import Icon from './icon';
 
 export default function WeatherCard({weather, temperature, description}){
    
     return(
             <View style={styles.card}>
-                <Image source={sun} style={styles.icon}/>
+                <Icon weather={weather}/>
                 <Text style={styles.temperature}>{temperature}º</Text>
                 <Text style={styles.weather}>{description}</Text>
             </View>
